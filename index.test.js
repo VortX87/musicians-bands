@@ -1,5 +1,5 @@
-const {sequelize} = require('./db');
-const {Band, Musician} = require('./index')
+const { sequelize, db } = require('./db');
+const { Band, Musician } = require('./index')
 
 describe('Band and Musician Models', () => {
     /**
@@ -9,16 +9,22 @@ describe('Band and Musician Models', () => {
         // the 'sync' method will create tables based on the model class
         // by setting 'force:true' the tables are recreated each time the 
         // test suite is run
-        await sequelize.sync({ force: true });
+        await db.sync({ force: true });
     })
 
     test('can create a Band', async () => {
-        // TODO - test creating a band
-        expect('NO TEST').toBe('EXPECTED VALUE HERE');
+        const testBand = await Band.create({
+            name: 'Queen',
+            genre: 'Rock'
+        })
+        expect(testBand.name).toBe('Queen');
     })
 
     test('can create a Musician', async () => {
-        // TODO - test creating a musician
-        expect('NO TEST').toBe('EXPECTED VALUE HERE');
+        const testMusician = await Musician.create({
+            name: 'Brian May',
+            instrument: 'Guitar'
+        })
+        expect(testMusician.name).toBe('Brian May');
     })
 })

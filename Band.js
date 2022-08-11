@@ -1,8 +1,25 @@
-const {Sequelize, sequelize} = require('./db');
+const { db } = require('./db');
+const { Sequelize, DataTypes } = require('sequelize');
 
-// TODO - define the Band model
-let Band;
+// The Band model should have name and genre properties, both of which are strings.
+const Band = db.define('Band', {
 
-module.exports = {
-    Band
-};
+    name: {
+        type: DataTypes.STRING
+    },
+    genre: {
+        type: DataTypes.STRING
+    }
+})
+
+// async function main() {
+//     await Band.sync({ force: true })
+
+//     await Band.create({
+//         name: 'Queen',
+//         genre: 'Rock',
+
+//     })
+// }
+// main()
+module.exports = { Band };
